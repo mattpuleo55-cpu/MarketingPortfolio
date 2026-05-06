@@ -62,23 +62,14 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
 .slide:nth-child(even) .slide-left { background:#f8f8f6; }
 .slide-right { width:50%; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#eaeae8; }
 .dual-right { width:50%; display:flex; flex-direction:column; overflow:hidden; }
-.dual-half { flex:1; display:flex; align-items:center; justify-content:center; background:#eaeae8; padding:1.5rem; }
+.dual-half { flex:1; display:flex; align-items:center; justify-content:center; background:#eaeae8; overflow:hidden; }
+.dual-half img { width:100%; height:100%; object-fit:contain; padding:1rem; }
 .dual-half:first-child { border-bottom:1px solid #d8d8d6; }
+.slide-right img { max-width:90%; max-height:90%; object-fit:contain; }
 .slide-progress { position:absolute; bottom:0; left:0; right:0; height:3px; background:rgba(0,0,0,0.06); z-index:10; }
 .slide-progress-fill { height:100%; background:#0f2044; opacity:0.25; }
-
-/* Slide-specific colors */
-.s1 .slide-left { border-left-color:#7f77dd; }
-.s2 .slide-left { border-left-color:#d4537e; }
-.s3 .slide-left { border-left-color:#639922; }
-.s4 .slide-left { border-left-color:#ba7517; }
-.s5 .slide-left { border-left-color:#378add; }
-.s1 .slide-progress-fill { width:20%; }
-.s2 .slide-progress-fill { width:40%; }
-.s3 .slide-progress-fill { width:60%; }
-.s4 .slide-progress-fill { width:80%; }
-.s5 .slide-progress-fill { width:100%; }
-
+.s1 .slide-left{border-left-color:#7f77dd;} .s2 .slide-left{border-left-color:#d4537e;} .s3 .slide-left{border-left-color:#639922;} .s4 .slide-left{border-left-color:#ba7517;} .s5 .slide-left{border-left-color:#378add;}
+.s1 .slide-progress-fill{width:20%;} .s2 .slide-progress-fill{width:40%;} .s3 .slide-progress-fill{width:60%;} .s4 .slide-progress-fill{width:80%;} .s5 .slide-progress-fill{width:100%;}
 .deco-n { position:absolute; bottom:-16px; left:-8px; font-family:Georgia,serif; font-size:180px; line-height:1; color:#0f2044; opacity:0.035; pointer-events:none; user-select:none; }
 .s-num,.s-title,.s-badges,.s-desc,.s-hl,.tags,.s-btns { opacity:0; transform:translateY(14px); transition:opacity 0.45s ease,transform 0.45s ease; }
 .slide.active .s-num{opacity:1;transform:none;transition-delay:0.0s;} .slide.active .s-title{opacity:1;transform:none;transition-delay:0.08s;} .slide.active .s-badges{opacity:1;transform:none;transition-delay:0.15s;} .slide.active .s-desc{opacity:1;transform:none;transition-delay:0.21s;} .slide.active .s-hl{opacity:0.7;transform:none;transition-delay:0.26s;} .slide.active .tags{opacity:1;transform:none;transition-delay:0.30s;} .slide.active .s-btns{opacity:1;transform:none;transition-delay:0.35s;}
@@ -98,16 +89,12 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
 .s-btn-primary:hover { background:#0f2044; color:white; }
 .counter { position:absolute; bottom:1.1rem; right:2rem; font-size:11px; color:#ccc; letter-spacing:0.06em; font-weight:500; }
 .counter strong { color:#0f2044; }
-.ph { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; width:100%; height:100%; color:#bbb; }
-.ph-icon { font-size:28px; }
-.ph-label { font-size:11px; letter-spacing:0.06em; text-transform:uppercase; }
-.ph-hint { font-size:10px; color:#ccc; }
 
 /* SKILLS */
 #skills { min-height:100vh; scroll-snap-align:start; background:#f0f0ee; display:flex; align-items:center; padding:5rem 2.5rem; }
 .skills-inner { max-width:860px; margin:0 auto; width:100%; }
 .skills-h,.skills-sub,.skills-cats>div { opacity:0; transform:translateY(14px); transition:opacity 0.45s ease,transform 0.45s ease; }
-#skills.active .skills-h{opacity:1;transform:none;transition-delay:0s;} #skills.active .skills-sub{opacity:1;transform:none;transition-delay:0.08s;} #skills.active .skills-cats>div:nth-child(1){opacity:1;transform:none;transition-delay:0.16s;} #skills.active .skills-cats>div:nth-child(2){opacity:1;transform:none;transition-delay:0.26s;} #skills.active .skills-cats>div:nth-child(3){opacity:1;transform:none;transition-delay:0.36s;}
+#skills.active .skills-h{opacity:1;transform:none;transition-delay:0s;} #skills.active .skills-sub{opacity:1;transform:none;transition-delay:0.08s;} #skills.active .skills-cats>div:nth-child(1){opacity:1;transform:none;transition-delay:0.16s;} #skills.active .skills-cats>div:nth-child(2){opacity:1;transform:none;transition-delay:0.26s;}
 .skills-h { font-family:Georgia,serif; font-size:2.2rem; font-weight:normal; color:#0f2044; padding-bottom:1rem; border-bottom:1.5px solid #0f2044; margin-bottom:0.75rem; }
 .skills-sub { font-size:15px; color:#666; line-height:1.7; margin-bottom:2rem; max-width:560px; }
 .skills-cats { display:flex; flex-direction:column; gap:2rem; }
@@ -147,78 +134,27 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
 .m-sec { font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:#999; margin-bottom:0.5rem; margin-top:1rem; }
 </style>
 <script>
-const demoBtn = '<a href="https://claude.ai/artifacts/latest/0e760d01-fe93-4473-a74e-0db238d0c2b7" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;font-family:Inter,-apple-system,sans-serif;color:#d4537e;background:#fbeaf0;border:0.5px solid #f0b8cc;border-radius:8px;padding:7px 14px;text-decoration:none;">View demo &#x2197;</a>';
+var demoBtn = '<a href="https://claude.ai/artifacts/latest/0e760d01-fe93-4473-a74e-0db238d0c2b7" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;font-family:Inter,-apple-system,sans-serif;color:#d4537e;background:#fbeaf0;border:0.5px solid #f0b8cc;border-radius:8px;padding:7px 14px;text-decoration:none;">View demo &#x2197;</a>';
 
-const projects = {
-  cs01:{ num:'Case Study 01', title:'Mock Drug Brand Design — Bartevia', type:'<span class="type-pill t-brand">Brand Design</span>', aud:'Patients', imgClass:'mi-brand',
-    desc:'Developed the brand identity and patient-facing marketing materials for Bartevia (vipokibart), a mock UC biologic. Created for the IPhO VIP Case Competition at Northeastern University. Deliverables included a logo, print ad, and Instagram post.',
-    hl:'"Beyond Remission, Towards Living Fully" — a tagline designed to shift the focus from symptom control to long-term quality of life.',
-    tags:['Brand Identity','DTC Advertising','Patient Marketing','Social Media','Print Design','GI / Immunology'],
-    extras:[
-      {l:'Logo Design', t:'The logo features a bold, stylized "B" made from two forward-facing arrow shapes, meant to suggest progress and momentum. Purple was chosen as the brand color because it is commonly associated with prestige and innovation, positioning Bartevia as a step forward in UC treatment.'},
-      {l:'Print Advertisement', t:'The print ad shows a woman smiling and going about her day in a purple-tinted setting, putting the focus on what life looks like in remission rather than on the disease itself. The tagline and a patient call to action are anchored at the bottom, with the NU Genzyn logo for credibility.'},
-      {l:'Instagram Post', t:'The social post shows a family outdoors together, using lifestyle imagery to communicate the brand message without clinical language. The tagline appears in a bold purple banner designed to stand out in a feed. Posted to the mock @NUGENZYN account.'},
-      {l:'Strategic Rationale', t:'All three pieces were built around the same core idea: UC patients are underserved by messaging that only talks about remission. The goal was to show what patients actually gain from treatment, using consistent visuals and language across every channel.'}
-    ]
-  },
-  cs02:{ num:'Case Study 02', title:'SOPPS Social Media Content Planner', type:'<span class="type-pill t-tool">Digital Tool</span>', aud:'Faculty & staff', imgClass:'mi-tool',
-    desc:'Designed and deployed a multi-user web application for the Northeastern University School of Pharmacy to plan, track, and coordinate social media content across the team. Replaced a manual, document-based workflow with a real-time collaborative platform accessible from any device. Built using Claude AI as a coding assistant throughout development.',
-    hl:null,
-    tags:['Content Strategy','Digital Marketing','AI Integration','Product Development','Full-Stack','SOPPS'],
-    extras:[
-      {l:'Tech Stack', t:'React + TypeScript, Vite, Supabase (PostgreSQL), Vercel, GitHub, Groq (Llama 3.3), Recharts'},
-      {l:'Key Features', t:'Dashboard with 7-day calendar and priority deadlines · Full content list with filtering and CSV export · Monthly calendar grid with click-to-assign · Publications tracker for faculty research · AI caption generation with brand voice customization · Analytics charts for engagement and format performance · Full activity audit log'},
-      {l:'Collaboration', t:'All data is shared in real time across users via Supabase. Each edit is stamped with the user\'s name and logged in a full audit trail. Undo/redo supports up to 30 actions.'},
-      {l:'Deployment', t:'Connected GitHub repo to Vercel for automatic redeployment on every push. Changes go live in under 60 seconds.'},
-      {l:'Live App', t:demoBtn}
-    ]
-  },
-  cs03:{ num:'Case Study 03', title:'SOPPS Rankings Announcement', type:'<span class="type-pill t-social">Social Media</span>', aud:'Pharmacy community', imgClass:'mi-social',
-    desc:'Wrote and designed an Instagram post for the SOPPS admissions account announcing Northeastern\'s rise to #27 in the U.S. News "Best Pharmacy Schools" rankings. It finished as the top-performing post of the 2025-2026 academic year across likes, reach, shares, and total interactions.',
-    hl:null,
-    tags:['Social Media','Copywriting','Community Building','SOPPS','Instagram'],
-    extras:[
-      {l:'Performance', t:'#1 post of the 2025-2026 academic year on the SOPPS Instagram account across likes, reach, shares, and total interactions.'},
-      {l:'Graphic Design', t:'The post is built around a card layout featuring the U.S. News logo, an aerial shot of the Northeastern campus, and the ranking number in red. Borrowing the visual style of U.S. News branding helped make the achievement feel official and easy to recognize at a glance.'},
-      {l:'Copywriting', t:'The caption opens with the ranking jump, then credits the community behind it -- faculty, staff, and students contributing through publications, grants, conference presentations, and professional organizations. Written to feel celebratory but specific, drawing on the faculty announcement of the ranking for context.'},
-      {l:'Platform', t:'Instagram, posted on behalf of SOPPS. Written to match the account\'s style guidelines: active language, one hashtag (#nubouve), and minimal emoji use.'}
-    ]
-  },
-  cs04:{ num:'Case Study 04', title:'APPE Informational Video', type:'<span class="type-pill t-video">Video</span>', aud:'Prospective students', imgClass:'mi-video',
-    desc:'Edited a promotional video for the Northeastern APPE program using raw interview footage from the Bouve College of Health Sciences marketing team. The video features three current P4 students -- Christian, Anna, and Amanda -- sharing their firsthand experiences with APPEs. My role was to select clips, structure the narrative, and edit everything into a cohesive piece.',
-    hl:null,
-    tags:['Video Editing','Storytelling','Email Marketing','Admissions','Recruitment'],
-    extras:[
-      {l:'Source Material', t:'Raw interview footage from the Bouve marketing team featuring three P4 PharmD students discussing their APPE year, the application and matching process, faculty support, and rotation experiences across hospitals, primary care clinics, long-term care, and specialty settings.'},
-      {l:'Editorial Approach', t:'Clips from all three students were woven together to show the range of experiences available rather than a single perspective. The edit moves through the APPE process from start to finish -- the application process, what rotations look like in practice, and how the experience shapes career direction -- drawing on local, national, and international placement examples.'},
-      {l:'Key Messages', t:'Northeastern offers APPE rotations across a wide range of settings and locations. Students get dedicated faculty support, real clinical responsibility, and the flexibility to explore different career paths before graduating.'},
-      {l:'Distribution', t:'Distributed via email to prospective PharmD students as part of SOPPS admissions outreach.'}
-    ]
-  },
-  cs05:{ num:'Case Study 05', title:'Vaccination Advertisement', type:'<span class="type-pill t-print">Print / Digital</span>', aud:'Patients', imgClass:'mi-print',
-    desc:'Designed a one-page vaccination flyer for a PharmD OSCE assignment. The prompt asked for a seasonal immunization advertisement for a mock community pharmacy that could work as a social media post or a storefront display. The flyer covered three vaccines for the August-December immunization calendar.',
-    hl:null,
-    tags:['Health Communication','Patient Education','Graphic Design','Immunization','Northeastern Pharmacy'],
-    extras:[
-      {l:'Assignment Context', t:'Part of OSCE Station SAS-3 for the Class of 2027. The task was to design a professional flyer promoting seasonal immunizations at a community pharmacy, with accurate eligibility information and branding consistent with the Northeastern Pharmacy identity.'},
-      {l:'Vaccine Selection', t:'Influenza, COVID-19, and RSV were chosen as the three most relevant vaccines for the August-December window. Each section includes CDC-based eligibility and age criteria, laid out to be easy to read quickly.'},
-      {l:'Design Approach', t:'The flyer uses a navy and red color scheme with a numbered card layout to separate each vaccine. The hero section uses three single-word headlines -- "Free," "Protection," and "Available" -- each readable on its own but paired with a short supporting line for patients who want more detail.'},
-      {l:'Format', t:'Single page, designed to work as both a printed storefront flyer and a shareable social media image. All content is based on CDC recommendations, with a source disclaimer at the bottom.'}
-    ]
-  }
+var projects = {
+  cs01:{ num:'Case Study 01', title:'Mock Drug Brand Design - Bartevia', type:'<span class="type-pill t-brand">Brand Design</span>', aud:'Patients', imgClass:'mi-brand', desc:'Developed the brand identity and patient-facing marketing materials for Bartevia (vipokibart), a mock UC biologic. Created for the IPhO VIP Case Competition at Northeastern University. Deliverables included a logo, print ad, and Instagram post.', hl:'"Beyond Remission, Towards Living Fully" - a tagline designed to shift the focus from symptom control to long-term quality of life.', tags:['Brand Identity','DTC Advertising','Patient Marketing','Social Media','Print Design','GI / Immunology'], extras:[{l:'Logo Design',t:'The logo features a bold, stylized "B" made from two forward-facing arrow shapes, meant to suggest progress and momentum. Purple was chosen as the brand color because it is commonly associated with prestige and innovation, positioning Bartevia as a step forward in UC treatment.'},{l:'Print Advertisement',t:'The print ad shows a woman smiling and going about her day in a purple-tinted setting, putting the focus on what life looks like in remission rather than on the disease itself. The tagline and a patient call to action are anchored at the bottom, with the NU Genzyn logo for credibility.'},{l:'Instagram Post',t:'The social post shows a family outdoors together, using lifestyle imagery to communicate the brand message without clinical language. The tagline appears in a bold purple banner designed to stand out in a feed. Posted to the mock @NUGENZYN account.'},{l:'Strategic Rationale',t:'All three pieces were built around the same core idea: UC patients are underserved by messaging that only talks about remission. The goal was to show what patients actually gain from treatment, using consistent visuals and language across every channel.'}] },
+  cs02:{ num:'Case Study 02', title:'SOPPS Social Media Content Planner', type:'<span class="type-pill t-tool">Digital Tool</span>', aud:'Faculty & staff', imgClass:'mi-tool', desc:'Designed and deployed a multi-user web application for the Northeastern University School of Pharmacy to plan, track, and coordinate social media content across the team. Replaced a manual, document-based workflow with a real-time collaborative platform accessible from any device. Built using Claude AI as a coding assistant throughout development.', hl:null, tags:['Content Strategy','Digital Marketing','AI Integration','Product Development','Full-Stack','SOPPS'], extras:[{l:'Tech Stack',t:'React + TypeScript, Vite, Supabase (PostgreSQL), Vercel, GitHub, Groq (Llama 3.3), Recharts'},{l:'Key Features',t:'Dashboard with 7-day calendar and priority deadlines · Full content list with filtering and CSV export · Monthly calendar grid with click-to-assign · Publications tracker for faculty research · AI caption generation with brand voice customization · Analytics charts for engagement and format performance · Full activity audit log'},{l:'Collaboration',t:'All data is shared in real time across users via Supabase. Each edit is stamped with the user\'s name and logged in a full audit trail. Undo/redo supports up to 30 actions.'},{l:'Deployment',t:'Connected GitHub repo to Vercel for automatic redeployment on every push. Changes go live in under 60 seconds.'},{l:'Live App',t:demoBtn}] },
+  cs03:{ num:'Case Study 03', title:'SOPPS Rankings Announcement', type:'<span class="type-pill t-social">Social Media</span>', aud:'Pharmacy community', imgClass:'mi-social', desc:'Wrote and designed an Instagram post for the SOPPS admissions account announcing Northeastern\'s rise to #27 in the U.S. News "Best Pharmacy Schools" rankings. It finished as the top-performing post of the 2025-2026 academic year across likes, reach, shares, and total interactions.', hl:null, tags:['Social Media','Copywriting','Community Building','SOPPS','Instagram'], extras:[{l:'Performance',t:'#1 post of the 2025-2026 academic year on the SOPPS Instagram account across likes, reach, shares, and total interactions.'},{l:'Graphic Design',t:'The post is built around a card layout featuring the U.S. News logo, an aerial shot of the Northeastern campus, and the ranking number in red. Borrowing the visual style of U.S. News branding helped make the achievement feel official and easy to recognize at a glance.'},{l:'Copywriting',t:'The caption opens with the ranking jump, then credits the community behind it -- faculty, staff, and students contributing through publications, grants, conference presentations, and professional organizations. Written to feel celebratory but specific, drawing on the faculty announcement of the ranking for context.'},{l:'Platform',t:'Instagram, posted on behalf of SOPPS. Written to match the account\'s style guidelines: active language, one hashtag (#nubouve), and minimal emoji use.'}] },
+  cs04:{ num:'Case Study 04', title:'APPE Informational Video', type:'<span class="type-pill t-video">Video</span>', aud:'Prospective students', imgClass:'mi-video', desc:'Edited a promotional video for the Northeastern APPE program using raw interview footage from the Bouve College of Health Sciences marketing team. The video features three current P4 students -- Christian, Anna, and Amanda -- sharing their firsthand experiences with APPEs. My role was to select clips, structure the narrative, and edit everything into a cohesive piece.', hl:null, tags:['Video Editing','Storytelling','Email Marketing','Admissions','Recruitment'], extras:[{l:'Source Material',t:'Raw interview footage from the Bouve marketing team featuring three P4 PharmD students discussing their APPE year, the application and matching process, faculty support, and rotation experiences across hospitals, primary care clinics, long-term care, and specialty settings.'},{l:'Editorial Approach',t:'Clips from all three students were woven together to show the range of experiences available rather than a single perspective. The edit moves through the APPE process from start to finish -- the application process, what rotations look like in practice, and how the experience shapes career direction.'},{l:'Key Messages',t:'Northeastern offers APPE rotations across a wide range of settings and locations. Students get dedicated faculty support, real clinical responsibility, and the flexibility to explore different career paths before graduating.'},{l:'Distribution',t:'Distributed via email to prospective PharmD students as part of SOPPS admissions outreach.'}] },
+  cs05:{ num:'Case Study 05', title:'Vaccination Advertisement', type:'<span class="type-pill t-print">Print / Digital</span>', aud:'Patients', imgClass:'mi-print', desc:'Designed a one-page vaccination flyer for a PharmD OSCE assignment. The prompt asked for a seasonal immunization advertisement for a mock community pharmacy that could work as a social media post or a storefront display. The flyer covered three vaccines for the August-December immunization calendar.', hl:null, tags:['Health Communication','Patient Education','Graphic Design','Immunization','Northeastern Pharmacy'], extras:[{l:'Assignment Context',t:'Part of OSCE Station SAS-3 for the Class of 2027. The task was to design a professional flyer promoting seasonal immunizations at a community pharmacy, with accurate eligibility information and branding consistent with the Northeastern Pharmacy identity.'},{l:'Vaccine Selection',t:'Influenza, COVID-19, and RSV were chosen as the three most relevant vaccines for the August-December window. Each section includes CDC-based eligibility and age criteria, laid out to be easy to read quickly.'},{l:'Design Approach',t:'The flyer uses a navy and red color scheme with a numbered card layout to separate each vaccine. The hero section uses three single-word headlines -- "Free," "Protection," and "Available" -- each readable on its own but paired with a short supporting line for patients who want more detail.'},{l:'Format',t:'Single page, designed to work as both a printed storefront flyer and a shareable social media image. All content is based on CDC recommendations, with a source disclaimer at the bottom.'}] }
 };
 
 function openModal(id) {
-  const p = projects[id];
+  var p = projects[id];
   if (!p) return;
   document.getElementById('modal-img').className = p.imgClass;
   document.getElementById('m-num').textContent = p.num;
   document.getElementById('m-title').textContent = p.title;
   document.getElementById('m-badges').innerHTML = p.type + '<span class="aud"><em>Audience</em>' + p.aud + '</span>';
   document.getElementById('m-desc').textContent = p.desc;
-  const hlEl = document.getElementById('m-hl');
+  var hlEl = document.getElementById('m-hl');
   if (p.hl) { hlEl.textContent = p.hl; hlEl.style.display = 'block'; } else { hlEl.style.display = 'none'; }
-  let html = p.extras.map(function(e){ return '<div class="m-sec">' + e.l + '</div><div style="font-size:13px;color:#555;line-height:1.65;margin-bottom:.75rem">' + e.t + '</div>'; }).join('');
+  var html = p.extras.map(function(e){ return '<div class="m-sec">' + e.l + '</div><div style="font-size:13px;color:#555;line-height:1.65;margin-bottom:.75rem">' + e.t + '</div>'; }).join('');
   html += '<div class="m-sec">Tags</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:0.5rem">' + p.tags.map(function(t){ return '<span class="tag">' + t + '</span>'; }).join('') + '</div>';
   document.getElementById('m-content').innerHTML = html;
   document.getElementById('overlay').classList.add('open');
@@ -231,30 +167,23 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('overlay').addEventListener('click', function(e){ if(e.target===e.currentTarget) closeModal(); });
   document.addEventListener('click', function(e){ if(!e.target.closest('#dd')) document.getElementById('dd').classList.remove('open'); });
   document.querySelectorAll('.slide').forEach(function(s){
-    s.addEventListener('click', function(e){ if(!e.target.closest('.s-btn-primary') && !e.target.closest('a')) openModal(s.dataset.project); });
+    s.addEventListener('click', function(e){ if(!e.target.closest('.s-btn-primary') && !e.target.closest('a') && !e.target.closest('iframe')) openModal(s.dataset.project); });
   });
   function checkNav() {
-    const hb = document.getElementById('hero').getBoundingClientRect().bottom;
+    var hb = document.getElementById('hero').getBoundingClientRect().bottom;
     document.getElementById('nav').classList.toggle('scrolled', hb <= 56);
-    const sections = ['s5','s4','s3','s2','s1'];
-    const navMap = {'s1':'casestudies','s2':'casestudies','s3':'casestudies','s4':'casestudies','s5':'casestudies'};
-    let active = 'about';
-    const contactTop = document.getElementById('contact').getBoundingClientRect().top;
-    const skillsTop = document.getElementById('skills').getBoundingClientRect().top;
+    var active = 'about';
+    var contactTop = document.getElementById('contact').getBoundingClientRect().top;
+    var skillsTop = document.getElementById('skills').getBoundingClientRect().top;
     if (contactTop <= 80) { active = 'contact'; }
     else if (skillsTop <= 80) { active = 'skills'; }
-    else {
-      document.querySelectorAll('.slide').forEach(function(s){
-        if (s.getBoundingClientRect().top <= 80) active = 'casestudies';
-      });
-      if (hb > 56) active = 'about';
-    }
+    else if (hb <= 56) { active = 'casestudies'; }
     document.querySelectorAll('#nav-links span[data-section]').forEach(function(sp){ sp.classList.toggle('active', sp.dataset.section===active); });
   }
   function updateActive() {
-    const mid = window.innerHeight/2;
-    document.querySelectorAll('.slide').forEach(function(s){ const r=s.getBoundingClientRect(); if(r.top<mid&&r.bottom>mid) s.classList.add('active'); else s.classList.remove('active'); });
-    const sk = document.getElementById('skills'); const sr=sk.getBoundingClientRect(); if(sr.top<mid&&sr.bottom>mid) sk.classList.add('active'); else sk.classList.remove('active');
+    var mid = window.innerHeight/2;
+    document.querySelectorAll('.slide').forEach(function(s){ var r=s.getBoundingClientRect(); if(r.top<mid&&r.bottom>mid) s.classList.add('active'); else s.classList.remove('active'); });
+    var sk = document.getElementById('skills'); var sr=sk.getBoundingClientRect(); if(sr.top<mid&&sr.bottom>mid) sk.classList.add('active'); else sk.classList.remove('active');
   }
   window.addEventListener('scroll', function(){ checkNav(); updateActive(); }, {passive:true});
   checkNav(); updateActive();
@@ -287,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div id="dd">
       <span data-section="casestudies" onclick="toggleDD(event)">Case Studies <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
       <div id="dd-menu">
-        <div class="dd-item" onclick="goTo('slide01')"><span class="dd-n">01</span><span class="dd-t">Mock Drug Brand Design — Bartevia</span><span class="badge b-brand">Brand</span></div>
+        <div class="dd-item" onclick="goTo('slide01')"><span class="dd-n">01</span><span class="dd-t">Mock Drug Brand Design - Bartevia</span><span class="badge b-brand">Brand</span></div>
         <div class="dd-item" onclick="goTo('slide02')"><span class="dd-n">02</span><span class="dd-t">SOPPS Content Planner</span><span class="badge b-tool">Tool</span></div>
         <div class="dd-item" onclick="goTo('slide03')"><span class="dd-n">03</span><span class="dd-t">SOPPS Rankings Announcement</span><span class="badge b-social">Social</span></div>
         <div class="dd-item" onclick="goTo('slide04')"><span class="dd-n">04</span><span class="dd-t">APPE Informational Video</span><span class="badge b-video">Video</span></div>
@@ -306,10 +235,10 @@ document.addEventListener('DOMContentLoaded', function() {
       <p class="hero-tag">P4 PharmD Student &#183; Northeastern University</p>
       <h1 class="hero-h1">Marketing Portfolio</h1>
       <p class="hero-by">Matthew Puleo</p>
-      <p class="hero-desc">Pharmacy student focused on commercial strategy, digital marketing, and market access — spanning brand design, video, social media, and digital tools.</p>
+      <p class="hero-desc">Pharmacy student focused on commercial strategy, digital marketing, and market access, spanning brand design, video, social media, and digital tools.</p>
       <div class="hero-toc">
         <div class="hero-toc-label">Case Studies</div>
-        <div class="hero-toc-item" onclick="goTo('slide01')"><span class="hero-toc-num">01</span><span class="hero-toc-title">Mock Drug Brand Design — Bartevia</span><span class="hero-toc-badge b-brand">Brand</span></div>
+        <div class="hero-toc-item" onclick="goTo('slide01')"><span class="hero-toc-num">01</span><span class="hero-toc-title">Mock Drug Brand Design - Bartevia</span><span class="hero-toc-badge b-brand">Brand</span></div>
         <div class="hero-toc-item" onclick="goTo('slide02')"><span class="hero-toc-num">02</span><span class="hero-toc-title">SOPPS Social Media Content Planner</span><span class="hero-toc-badge b-tool">Tool</span></div>
         <div class="hero-toc-item" onclick="goTo('slide03')"><span class="hero-toc-num">03</span><span class="hero-toc-title">SOPPS Rankings Announcement</span><span class="hero-toc-badge b-social">Social</span></div>
         <div class="hero-toc-item" onclick="goTo('slide04')"><span class="hero-toc-num">04</span><span class="hero-toc-title">APPE Informational Video</span><span class="hero-toc-badge b-video">Video</span></div>
@@ -337,12 +266,12 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
-<!-- SLIDE 01: Bartevia -->
+<!-- SLIDE 01 -->
 <div class="slide s1" id="slide01" data-project="cs01">
   <div class="slide-left">
     <div class="deco-n">01</div>
     <div class="s-num">Case Study 01</div>
-    <div class="s-title">Mock Drug Brand Design — Bartevia</div>
+    <div class="s-title">Mock Drug Brand Design - Bartevia</div>
     <div class="s-badges"><span class="type-pill t-brand">Brand Design</span><span class="aud"><em>Audience</em>Patients</span></div>
     <p class="s-desc">Developed the brand identity and patient-facing marketing materials for Bartevia&#174; (vipokibart), a mock UC biologic. Created for the IPhO VIP Case Competition. Deliverables included a logo, print ad, and Instagram post.</p>
     <p class="s-hl">&#8220;Beyond Remission, Towards Living Fully&#8221;</p>
@@ -351,13 +280,13 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="counter"><strong>01</strong> / 05</div>
   </div>
   <div class="dual-right">
-    <div class="dual-half"><img src="bartevia_instagram.png" alt="Bartevia Instagram mockup" style="max-width:100%;max-height:100%;object-fit:contain;"></div>
-    <div class="dual-half"><img src="bartevia_print.png" alt="Bartevia print advertisement" style="max-width:100%;max-height:100%;object-fit:contain;"></div>
+    <div class="dual-half"><img src="bartevia_instagram.png" alt="Bartevia Instagram mockup"></div>
+    <div class="dual-half"><img src="bartevia_print.png" alt="Bartevia print advertisement"></div>
   </div>
   <div class="slide-progress"><div class="slide-progress-fill"></div></div>
 </div>
 
-<!-- SLIDE 02: SOPPS Planner -->
+<!-- SLIDE 02 -->
 <div class="slide s2" id="slide02" data-project="cs02">
   <div class="slide-left">
     <div class="deco-n">02</div>
@@ -373,12 +302,12 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="counter"><strong>02</strong> / 05</div>
   </div>
   <div class="slide-right" style="background:#ede8f5;">
-    <img src="content_planner.png" alt="SOPPS Content Planner screenshot" style="max-width:90%;max-height:90%;object-fit:contain;">
+    <img src="content_planner.png" alt="SOPPS Content Planner screenshot">
   </div>
   <div class="slide-progress"><div class="slide-progress-fill"></div></div>
 </div>
 
-<!-- SLIDE 03: Rankings -->
+<!-- SLIDE 03 -->
 <div class="slide s3" id="slide03" data-project="cs03">
   <div class="slide-left">
     <div class="deco-n">03</div>
@@ -391,12 +320,12 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="counter"><strong>03</strong> / 05</div>
   </div>
   <div class="slide-right" style="background:#eaf3e8;">
-    <img src="rankings_post.png" alt="SOPPS Rankings Announcement post" style="max-width:90%;max-height:90%;object-fit:contain;">
+    <img src="rankings_post.png" alt="SOPPS Rankings Announcement post">
   </div>
   <div class="slide-progress"><div class="slide-progress-fill"></div></div>
 </div>
 
-<!-- SLIDE 04: APPE Video -->
+<!-- SLIDE 04 -->
 <div class="slide s4" id="slide04" data-project="cs04">
   <div class="slide-left">
     <div class="deco-n">04</div>
@@ -404,23 +333,17 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="s-title">APPE Informational Video</div>
     <div class="s-badges"><span class="type-pill t-video">Video</span><span class="aud"><em>Audience</em>Prospective students</span></div>
     <p class="s-desc">Edited a promotional video for the Northeastern APPE program using raw interview footage from the Bouve marketing team. Structured clips from three P4 students to walk prospective students through the APPE process, rotation options, and faculty support available at Northeastern.</p>
-    <div class="tags"><span class="tag">Video Production</span><span class="tag">Email Marketing</span><span class="tag">Admissions</span><span class="tag">Recruitment</span></div>
+    <div class="tags"><span class="tag">Video Editing</span><span class="tag">Storytelling</span><span class="tag">Email Marketing</span><span class="tag">Admissions</span></div>
     <div class="s-btns"><button class="s-btn-primary" onclick="openModal('cs04')">View case study &#x2197;</button></div>
     <div class="counter"><strong>04</strong> / 05</div>
   </div>
-  <div class="slide-right" style="background:#1a1a2e; display:flex; align-items:center; justify-content:center; padding:2rem; cursor:pointer;" onclick="window.open('https://www.youtube.com/watch?v=w9ggc7bcr-c','_blank')">
-    <div style="text-align:center;">
-      <div style="width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
-        <div style="width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:24px solid white;margin-left:6px;"></div>
-      </div>
-      <div style="font-size:13px;font-weight:500;color:white;margin-bottom:0.4rem;">Watch on YouTube</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.5);">From Explore to Expert: Three Incredible PharmD Journeys</div>
-    </div>
+  <div class="slide-right" style="background:#000; padding:0;">
+    <iframe src="https://www.youtube.com/embed/8AjztujPvlA" title="APPE Informational Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%; height:100%; display:block;"></iframe>
   </div>
   <div class="slide-progress"><div class="slide-progress-fill"></div></div>
 </div>
 
-<!-- SLIDE 05: Vaccination -->
+<!-- SLIDE 05 -->
 <div class="slide s5" id="slide05" data-project="cs05">
   <div class="slide-left">
     <div class="deco-n">05</div>
@@ -433,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="counter"><strong>05</strong> / 05</div>
   </div>
   <div class="slide-right" style="background:#e8eff8;">
-    <img src="vaccination_flyer.png" alt="Vaccination advertisement flyer" style="max-width:90%;max-height:90%;object-fit:contain;">
+    <img src="vaccination_flyer.png" alt="Vaccination advertisement flyer">
   </div>
   <div class="slide-progress"><div class="slide-progress-fill"></div></div>
 </div>
@@ -442,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div id="skills">
   <div class="skills-inner">
     <div class="skills-h">Skills &amp; Competencies</div>
-    <p class="skills-sub">A blend of clinical training, commercial strategy, and digital execution — built across rotations, coursework, and hands-on projects.</p>
+    <p class="skills-sub">A blend of clinical training, commercial strategy, and digital execution, built across rotations, coursework, and hands-on projects.</p>
     <div class="skills-cats">
       <div>
         <div class="cat-label">Commercial &amp; Marketing</div>
@@ -472,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <div id="contact">
     <div class="footer-inner">
       <div class="footer-h">Contact</div>
-      <div class="footer-name">Matthew Puleo — P4 PharmD Student, Northeastern University</div>
+      <div class="footer-name">Matthew Puleo - P4 PharmD Student, Northeastern University</div>
       <div class="footer-links">
         <a href="#">LinkedIn &#x2197;</a>
         <a href="mailto:Puleo.m@northeastern.edu">Email &#x2197;</a>
