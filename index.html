@@ -43,16 +43,16 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
 #dd.open .arrow-svg { transform:rotate(180deg); }
 
 /* HERO */
-#hero { height:100vh; scroll-snap-align:start; scroll-snap-stop:always; background:linear-gradient(135deg,#0a1628 0%,#0f2044 45%,#1a3a6e 80%,#1e4d8c 100%); position:relative; display:flex; align-items:center; clip-path:polygon(0 0,100% 0,100% 94%,0 100%); color:white; }
+#hero { min-height:100vh; height:100vh; scroll-snap-align:start; scroll-snap-stop:always; background:linear-gradient(135deg,#0a1628 0%,#0f2044 45%,#1a3a6e 80%,#1e4d8c 100%); position:relative; display:flex; align-items:center; clip-path:polygon(0 0,100% 0,100% 94%,0 100%); color:white; overflow-y:auto; }
 #hero::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.065) 1px,transparent 1px); background-size:22px 22px; pointer-events:none; }
-.hero-inner { position:relative; max-width:900px; margin:0 auto; padding:0 2.5rem; display:flex; align-items:center; justify-content:space-between; gap:3rem; width:100%; }
+.hero-inner { position:relative; max-width:900px; margin:0 auto; padding:5rem 2.5rem 4rem; display:flex; align-items:center; justify-content:space-between; gap:3rem; width:100%; }
 .hero-tag { font-size:12px; font-weight:500; letter-spacing:0.08em; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-bottom:1rem; opacity:0; transform:translateY(14px); animation:heroIn 0.5s ease 0.1s forwards; }
-.hero-h1 { font-family:Georgia,serif; font-size:clamp(2.4rem,6vw,4.2rem); font-weight:normal; color:white; line-height:1.1; margin-bottom:0.2rem; opacity:0; transform:translateY(14px); animation:heroIn 0.5s ease 0.2s forwards; }
-.hero-by { font-size:1.15rem; color:rgba(255,255,255,0.55); margin-bottom:1.5rem; opacity:0; transform:translateY(14px); animation:heroIn 0.5s ease 0.28s forwards; }
-.hero-desc { font-size:15px; color:rgba(255,255,255,0.82); line-height:1.8; max-width:480px; opacity:0; transform:translateY(14px); animation:heroIn 0.5s ease 0.36s forwards; }
-.hero-toc { margin-top:2rem; border-top:1px solid rgba(255,255,255,0.12); padding-top:1.25rem; opacity:0; transform:translateY(14px); animation:heroIn 0.5s ease 0.44s forwards; }
-.hero-toc-label { font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:1rem; }
-.hero-toc-item { display:flex; align-items:center; gap:12px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.07); cursor:pointer; transition:opacity 0.15s; }
+.hero-h1 { font-family:Georgia,serif; font-size:clamp(2rem,5vw,4.2rem); font-weight:normal; color:white; line-height:1.1; margin-bottom:0.2rem; opacity:0; transform:translateY(14px); animation:heroIn 0.5s ease 0.2s forwards; }
+.hero-by { font-size:1.05rem; color:rgba(255,255,255,0.55); margin-bottom:1.25rem; opacity:0; transform:translateY(14px); animation:heroIn 0.5s ease 0.28s forwards; }
+.hero-desc { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75; max-width:480px; opacity:0; transform:translateY(14px); animation:heroIn 0.5s ease 0.36s forwards; }
+.hero-toc { margin-top:1.5rem; border-top:1px solid rgba(255,255,255,0.12); padding-top:1rem; opacity:0; transform:translateY(14px); animation:heroIn 0.5s ease 0.44s forwards; }
+.hero-toc-label { font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.75rem; }
+.hero-toc-item { display:flex; align-items:center; gap:12px; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.07); cursor:pointer; transition:opacity 0.15s; }
 .hero-toc-item:last-child { border-bottom:none; }
 .hero-toc-item:hover { opacity:0.75; }
 .hero-toc-num { font-size:11px; color:rgba(255,255,255,0.3); font-weight:500; min-width:20px; }
@@ -64,6 +64,27 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
 .scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; color:rgba(255,255,255,0.4); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; animation:bob 2s ease-in-out infinite; z-index:10; }
 .scroll-hint svg { width:18px; height:18px; }
 @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* SHORT VIEWPORT */
+/* Side TOC hidden by default, only shown on short viewports */
+.hero-toc-side { display:none; }
+
+@media (max-height: 700px) {
+  .hero-inner { padding:4.5rem 2.5rem 3rem; flex-direction:row; align-items:center; gap:2.5rem; }
+  .hero-h1 { font-size:clamp(1.8rem,4vw,3rem); }
+  .hero-by { margin-bottom:0.75rem; }
+  .hero-desc { font-size:13px; line-height:1.65; }
+  .hero-graphic { display:none; }
+  .scroll-hint { bottom:1rem; }
+  .hero-text { flex:1; min-width:0; }
+  /* Hide inline TOC, show side TOC */
+  .hero-toc-inline { display:none; }
+  .hero-toc-side { display:block; flex-shrink:0; width:220px; border-left:1px solid rgba(255,255,255,0.12); padding-left:2rem; }
+}
+/* If also narrow, hide the side TOC entirely */
+@media (max-height: 700px) and (max-width: 900px) {
+  .hero-toc-side { display:none; }
+}
 
 /* SLIDES */
 .slide { height:100vh; scroll-snap-align:start; scroll-snap-stop:always; display:flex; cursor:pointer; overflow:hidden; position:relative; }
@@ -100,7 +121,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
 .counter strong { color:#0f2044; }
 
 /* MOBILE */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   /* Nav */
   #nav { padding:0 1.25rem; }
   #nav-name { font-size:13px; }
@@ -291,12 +312,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- HERO -->
 <div id="hero">
   <div class="hero-inner">
-    <div>
+    <div class="hero-text">
       <p class="hero-tag">P4 PharmD Student &#183; Northeastern University</p>
       <h1 class="hero-h1">Marketing Portfolio</h1>
       <p class="hero-by">Matthew Puleo</p>
       <p class="hero-desc">Pharmacy student focused on commercial strategy, digital marketing, and market access, spanning brand design, video, social media, and digital tools.</p>
-      <div class="hero-toc">
+      <div class="hero-toc hero-toc-inline">
         <div class="hero-toc-label">Case Studies</div>
         <div class="hero-toc-item" onclick="goTo('slide01')"><span class="hero-toc-num">01</span><span class="hero-toc-title">Mock Drug Brand Design - Bartevia</span><span class="hero-toc-badge b-brand">Brand</span></div>
         <div class="hero-toc-item" onclick="goTo('slide02')"><span class="hero-toc-num">02</span><span class="hero-toc-title">SOPPS Social Media Content Planner</span><span class="hero-toc-badge b-tool">Tool</span></div>
@@ -304,6 +325,14 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="hero-toc-item" onclick="goTo('slide04')"><span class="hero-toc-num">04</span><span class="hero-toc-title">APPE Informational Video</span><span class="hero-toc-badge b-video">Video</span></div>
         <div class="hero-toc-item" onclick="goTo('slide05')"><span class="hero-toc-num">05</span><span class="hero-toc-title">Vaccination Advertisement</span><span class="hero-toc-badge b-print">Print</span></div>
       </div>
+    </div>
+    <div class="hero-toc hero-toc-side">
+      <div class="hero-toc-label">Case Studies</div>
+      <div class="hero-toc-item" onclick="goTo('slide01')"><span class="hero-toc-num">01</span><span class="hero-toc-title">Mock Drug Brand Design - Bartevia</span><span class="hero-toc-badge b-brand">Brand</span></div>
+      <div class="hero-toc-item" onclick="goTo('slide02')"><span class="hero-toc-num">02</span><span class="hero-toc-title">SOPPS Social Media Content Planner</span><span class="hero-toc-badge b-tool">Tool</span></div>
+      <div class="hero-toc-item" onclick="goTo('slide03')"><span class="hero-toc-num">03</span><span class="hero-toc-title">SOPPS Rankings Announcement</span><span class="hero-toc-badge b-social">Social</span></div>
+      <div class="hero-toc-item" onclick="goTo('slide04')"><span class="hero-toc-num">04</span><span class="hero-toc-title">APPE Informational Video</span><span class="hero-toc-badge b-video">Video</span></div>
+      <div class="hero-toc-item" onclick="goTo('slide05')"><span class="hero-toc-num">05</span><span class="hero-toc-title">Vaccination Advertisement</span><span class="hero-toc-badge b-print">Print</span></div>
     </div>
     <div class="hero-graphic">
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
@@ -457,9 +486,9 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="footer-h">Contact</div>
       <div class="footer-name">Matthew Puleo - P4 PharmD Student, Northeastern University</div>
       <div class="footer-links">
-        <a href="#">LinkedIn &#x2197;</a>
-        <a href="mailto:Puleo.m@northeastern.edu">Email &#x2197;</a>
-        <a href="#">CV &#x2197;</a>
+        <a href="https://www.linkedin.com/in/matthew-puleo-163419314/" target="_blank">LinkedIn &#x2197;</a>
+        <a href="mailto:puleo.m@northeastern.edu">Email &#x2197;</a>
+        <a href="https://drive.google.com/file/d/1r9UTHHIKg9gdD-EIBE_98vknRCUr8GtI/view?usp=sharing" target="_blank">CV &#x2197;</a>
       </div>
       <p class="footer-note">Open to commercial pharma fellowship opportunities across therapeutic areas. Graduating 2027.</p>
     </div>
