@@ -164,8 +164,9 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
   #modal-body { padding:1.25rem; }
   .m-title { font-size:1.35rem; }
 
-  /* Remove nav-offset padding on image panels when stacked */
-  .slide-right.ig-panel { padding:1rem 0.5rem; }
+  /* Remove nav-offset padding on ALL image panels when stacked */
+  .slide-right { padding:1rem !important; }
+  .slide-right.ig-panel { padding:1rem 0.5rem !important; height:400px; overflow-y:scroll !important; -webkit-overflow-scrolling:touch; touch-action:pan-y; }
   .slide-right.vax-panel { padding:1rem !important; height:400px; }
 }
 
@@ -367,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="s-btns"><button class="s-btn-primary" onclick="openModal('cs01')">View case study &#x2197;</button></div>
     <div class="counter"><strong>01</strong> / 05</div>
   </div>
-  <div class="slide-right" style="background:#eaeae8; display:flex; flex-direction:row; align-items:center; justify-content:center; gap:1rem; padding:1.5rem;">
+  <div class="slide-right" style="background:#eaeae8; display:flex; flex-direction:row; align-items:center; justify-content:center; gap:1rem; padding:calc(56px + 1rem) 1.5rem 1.5rem;">
     <img src="bartevia_instagram.png" alt="Bartevia Instagram mockup" style="width:42%; max-height:90%; object-fit:contain;">
     <img src="bartevia_print.png" alt="Bartevia print advertisement" style="width:48%; max-height:90%; object-fit:contain;">
   </div>
@@ -389,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="counter"><strong>02</strong> / 05</div>
   </div>
-  <div class="slide-right" style="background:#ede8f5;">
+  <div class="slide-right" style="background:#ede8f5; display:flex; align-items:center; justify-content:center; padding:calc(56px + 1rem) 1.5rem 1.5rem; overflow:hidden;">
     <img src="content_planner.png" alt="SOPPS Content Planner screenshot">
   </div>
   <div class="slide-progress"><div class="slide-progress-fill"></div></div>
@@ -487,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="footer-name">Matthew Puleo - P4 PharmD Student, Northeastern University</div>
       <div class="footer-links">
         <a href="https://www.linkedin.com/in/matthew-puleo-163419314/" target="_blank">LinkedIn &#x2197;</a>
-        <a href="mailto:puleo.m@northeastern.edu">Email &#x2197;</a>
+        <a id="email-btn" onclick="(function(){navigator.clipboard.writeText('puleo.m@northeastern.edu');var b=document.getElementById('email-btn');var o=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=o;},2000);})()" style="cursor:pointer;">Email &#x2197;</a>
         <a href="https://drive.google.com/file/d/1r9UTHHIKg9gdD-EIBE_98vknRCUr8GtI/view?usp=sharing" target="_blank">CV &#x2197;</a>
       </div>
       <p class="footer-note">Open to commercial pharma fellowship opportunities across therapeutic areas. Graduating 2027.</p>
