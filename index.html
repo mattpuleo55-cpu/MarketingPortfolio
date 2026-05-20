@@ -164,9 +164,16 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
   #modal-body { padding:1.25rem; }
   .m-title { font-size:1.35rem; }
 
+  /* Slide 02 image */
+  .slide-right img { max-width:95% !important; max-height:95% !important; }
+
+  /* Slide 03 - show static preview on mobile, hide scrollable embed */
+  .ig-mobile-fallback { display:flex !important; }
+  .ig-panel .instagram-media { display:none !important; }
+
   /* Remove nav-offset padding on ALL image panels when stacked */
   .slide-right { padding:1rem !important; }
-  .slide-right.ig-panel { padding:1rem 0.5rem !important; height:400px; overflow-y:scroll !important; -webkit-overflow-scrolling:touch; touch-action:pan-y; }
+  .slide-right.ig-panel { padding:1rem !important; height:300px; overflow:hidden !important; }
   .slide-right.vax-panel { padding:1rem !important; height:400px; }
 }
 
@@ -411,6 +418,11 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="slide-right ig-panel" style="background:#eaf3e8; display:flex; align-items:flex-start; justify-content:center; padding:calc(56px + 0.75rem) 1rem 1rem; overflow-y:auto; overflow-x:hidden;">
     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DW4bSRhDxa2/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0 auto; max-width:320px; min-width:280px; padding:0; width:100%;"></blockquote>
     <script async src="//www.instagram.com/embed.js"></script>
+    <!-- Mobile fallback -->
+    <a class="ig-mobile-fallback" href="https://www.instagram.com/p/DW4bSRhDxa2/" target="_blank" style="display:none; flex-direction:column; align-items:center; justify-content:center; gap:1rem; text-decoration:none; width:100%; height:100%;">
+      <img src="rankings_post.png" alt="SOPPS Rankings post" style="max-width:85%; max-height:75%; object-fit:contain; border-radius:8px;">
+      <span style="font-size:13px; color:#639922; font-weight:500; background:white; padding:8px 16px; border-radius:8px; border:1px solid #c8e0b0;">View on Instagram &#x2197;</span>
+    </a>
   </div>
   <div class="slide-progress"><div class="slide-progress-fill"></div></div>
 </div>
