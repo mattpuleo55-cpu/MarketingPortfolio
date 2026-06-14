@@ -248,10 +248,18 @@ function openModal(id) {
   document.getElementById('m-content').innerHTML = html;
   document.getElementById('overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+  document.documentElement.style.scrollSnapType = 'none';
   if (typeof gtag !== 'undefined') {
     gtag('event', 'modal_opened', { case_study_id: id, case_study_title: p.title });
   }
-}function closeModal() { document.getElementById('overlay').classList.remove('open'); document.body.style.overflow = ''; }
+}
+function closeModal() { 
+  document.getElementById('overlay').classList.remove('open'); 
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+  document.documentElement.style.scrollSnapType = '';
+}
 function toggleDD(e) { e.stopPropagation(); document.getElementById('dd').classList.toggle('open'); }
 function goTo(id) { document.getElementById('dd').classList.remove('open'); document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
 
