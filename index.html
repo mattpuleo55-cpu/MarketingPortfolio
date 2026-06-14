@@ -247,8 +247,11 @@ function openModal(id) {
   html += '<div class="m-sec">Tags</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:0.5rem">' + p.tags.map(function(t){ return '<span class="tag">' + t + '</span>'; }).join('') + '</div>';
   document.getElementById('m-content').innerHTML = html;
   document.getElementById('overlay').classList.add('open');
-}
-function closeModal() { document.getElementById('overlay').classList.remove('open'); }
+  document.body.style.overflow = 'hidden';
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'modal_opened', { case_study_id: id, case_study_title: p.title });
+  }
+}function closeModal() { document.getElementById('overlay').classList.remove('open'); document.body.style.overflow = ''; }
 function toggleDD(e) { e.stopPropagation(); document.getElementById('dd').classList.toggle('open'); }
 function goTo(id) { document.getElementById('dd').classList.remove('open'); document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
 
@@ -276,6 +279,32 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   window.addEventListener('scroll', function(){ checkNav(); updateActive(); }, {passive:true});
   checkNav(); updateActive();
+
+  // GA4 slide + section view tracking
+  if (typeof gtag !== 'undefined') {
+    var tracked = {};
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          var id = entry.target.id || entry.target.dataset.project;
+          if (id && !tracked[id]) {
+            tracked[id] = true;
+            var label = entry.target.dataset.project
+              ? 'slide_viewed'
+              : 'section_viewed';
+            gtag('event', label, {
+              section_id: id,
+              case_study_id: entry.target.dataset.project || null
+            });
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.slide').forEach(function(s){ observer.observe(s); });
+    observer.observe(document.getElementById('skills'));
+    observer.observe(document.getElementById('contact'));
+  }
 });
 </script>
 </head>
